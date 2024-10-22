@@ -1,4 +1,6 @@
-import { serve } from "https://deno.land/std@0.171.0/http/server.ts";
+const express = require("express");
+const app = express();
+const port = 3000;
 
 const characters = [
   { name: "Harry Potter", age: 11 },
@@ -11,23 +13,15 @@ const characters = [
   { name: "Minerva McGonagall", age: 70 },
 ];
 
-const port = 3000;
+app.get("/characters", (req, res) => {
+  res.json(characters);
+});
 
-serve(
-  (req) => {
-    if (req.url === "/characters" && req.method === "GET") {
-      return new Response(JSON.stringify(characters), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
-    } else {
-      return new Response("Sorry, no special coffee here!", {
-        status: 404,
-        headers: { "Content-Type": "text/plain" },
-      });
-    }
-  },
-  { port }
-);
+// Handle all other routes
+app.use((req, res) => {
+  res.status(404).send("Sorry, no special coffee here!");
+});
 
-console.log(`Server running on http://localhost:${port}`);
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
