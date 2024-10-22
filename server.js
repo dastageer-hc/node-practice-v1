@@ -24,9 +24,9 @@ app.get("/characters", (req, res) => {
 
 // Handle all other routes
 app.use((req, res) => {
-  res.status(404).send("Sorry, no special coffee here!");
+  res
+    .status(404)
+    .send("Sorry, something either went wonderfully right or horribly wrong");
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+app.listen(port, () => {});
