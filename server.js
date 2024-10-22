@@ -1,6 +1,11 @@
 import express from "express";
+import cors from "cors";
+
 const app = express();
 const port = 3000;
+
+// Enable CORS
+app.use(cors());
 
 const characters = [
   { name: "Harry Potter", age: 11 },
