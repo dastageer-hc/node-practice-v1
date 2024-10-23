@@ -26,7 +26,7 @@ app.get("/characters", (req, res) => {
 app.use((req, res) => {
   res
     .status(404)
-    .send("Sorry, something either went wonderfully right or horribly wrong");
+    .send("Sorry, something either went wonderfully right or horribly wrong ");
 });
 
 app.listen(port, () => {});
